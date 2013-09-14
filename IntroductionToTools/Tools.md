@@ -23,7 +23,7 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 1. Browse to [http://github.com] (http://github.com) and sign up for an account (if you don't already have an account).
 
-![Github sign up image](GithubSIgnUp.png)
+![Github sign up image](GithubSignUp.png)
 
 2. Browse to the Github [site](https://github.com/joshpeterson/DevelopingConcurrentSoftware) for this course.
 3. Fork the repository
@@ -34,7 +34,7 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
     git clone https://github.com/StudentTestAccount/DevelopingConcurrentSoftware.git
 
-[!Github HTTPS clone URL image](GithubHTTPSCloneURL.png)
+![Github HTTPS clone URL image](GithubHTTPSCloneURL.png)
 
 Google Test
 -----------
