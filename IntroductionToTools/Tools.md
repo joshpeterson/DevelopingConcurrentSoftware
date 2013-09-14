@@ -21,18 +21,18 @@ Github
 ------
 Github is a website which provides free Git repository hosting, code sharing, and code review. I'll be pushing all of the code and notes for the course to Github.
 
-1. Browse to [http://github.com] (http://github.com) and sign up for an account (if you don't already have an account).
+* Browse to [http://github.com] (http://github.com) and sign up for an account (if you don't already have an account).
 
 ![Github sign up image](GithubSignUp.png)
 
-2. Browse to the Github [site](https://github.com/joshpeterson/DevelopingConcurrentSoftware) for this course.
-3. Fork the repository
+* Browse to the Github [site](https://github.com/joshpeterson/DevelopingConcurrentSoftware) for this course.
+* Fork the repository
 
 ![Fork a repo on Github image](GithubForkRepo.png)
 
-4. Clone the repository to your machine, using your Git utility.
+* Clone the repository to your machine, using your Git utility. Find the HTTPS URL for your repository.
 
-    git clone https://github.com/StudentTestAccount/DevelopingConcurrentSoftware.git
+    git clone https://github.com/<username>/DevelopingConcurrentSoftware.git
 
 ![Github HTTPS clone URL image](GithubHTTPSCloneURL.png)
 
