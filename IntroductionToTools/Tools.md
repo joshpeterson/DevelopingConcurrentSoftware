@@ -32,7 +32,7 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 * Clone the repository to your machine, using your Git utility. Find the HTTPS URL for your repository.
 
-    git clone https://github.com/<username>/DevelopingConcurrentSoftware.git
+    <pre>git clone https://github.com/<username>/DevelopingConcurrentSoftware.git</pre>
 
 ![Github HTTPS clone URL image](GithubHTTPSCloneURL.png)
 
