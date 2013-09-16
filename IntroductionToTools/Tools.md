@@ -48,3 +48,13 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 Google Test
 -----------
+Google Test is a C++ unit testing framework. To install it:
+
+1. Browse to the Google Test [site](http://code.google.com/p/googletest/).
+2. Download version 1.6.
+3. Extract the .zip file to some location one your machine.
+4. In the <pre>msvc</pre> directory, open the getst-md.sln file in Visual Studio 2012 (select Ok to perform the one-way project file upgrade, and acknowledge the security warning).
+5. From the BUILD menu choose "Build Solution" to build the Debug target.
+6. Switch Visual Studio to the Release target, and choose "Build Solution" again.
+
+
