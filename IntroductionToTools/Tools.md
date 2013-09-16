@@ -17,6 +17,16 @@ Git
 ---
 Git is a distributed version control utility. On Windows, I'm using MsysGit from [here](http://msysgit.github.io/), version 1.8.3.
 
+Configure Git using the following commands:
+
+<pre>
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global credential.helper "cache --timeout=3600"
+</pre>
+
+The first two commands set your user name and email address, used to mark commits. The last command will cache your Github password for one hour.
+
 Github
 ------
 Github is a website which provides free Git repository hosting, code sharing, and code review. I'll be pushing all of the code and notes for the course to Github.
