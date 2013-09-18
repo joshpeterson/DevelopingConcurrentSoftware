@@ -1,6 +1,6 @@
 Tools for this course
 =====================
-The following tools will be used in this source:
+The following tools will be used in this course:
 
 1. Visual Studio Express 2012 for Windows Desktop
 2. Git
@@ -42,19 +42,17 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 * Clone the repository to your machine, using your Git utility. Find the HTTPS URL for your repository.
 
-    <pre>git clone https://github.com/YourUsername/DevelopingConcurrentSoftware.git</pre>
+<pre>git clone https://github.com/YourUsername/DevelopingConcurrentSoftware.git</pre>
 
 ![Github HTTPS clone URL image](GithubHTTPSCloneURL.png)
 
 Google Test
 -----------
-Google Test is a C++ unit testing framework. To install it:
+Google Test is a C++ unit testing framework. In order to use it with Visual Studio 2012, I have made a few modifications (details are available [here](http://stackoverflow.com/questions/12558327/google-test-in-visual-studio-2012)). To install it:
 
-1. Browse to the Google Test [site](http://code.google.com/p/googletest/).
-2. Download version 1.6.
-3. Extract the .zip file to some location one your machine.
-4. In the msvc directory, open the getst-md.sln file in Visual Studio 2012 (select Ok to perform the one-way project file upgrade, and acknowledge the security warning).
-5. From the BUILD menu choose "Build Solution" to build the Debug target.
-6. Switch Visual Studio to the Release target, and choose "Build Solution" again.
+1. Download my modified and built version Google Test [here](https://docs.google.com/file/d/0B_iq84mNTIzZU2dIZkRNX1gwVUk/edit?usp=sharing) (choose File > Download from the menu)
+2. Extract the .zip file to some location on your machine
+3. Set the GTEST_DIR environment variable to point to the location of the extracted file. For example, if you extracted the files to C:\Development, then
 
+<pre>GEST_DIR=C:\Development\gtest-1.6.0-modified</pre>
 
