@@ -56,3 +56,14 @@ Google Test is a C++ unit testing framework. In order to use it with Visual Stud
 
 <pre>GEST_DIR=C:\Development\gtest-1.6.0-modified</pre>
 
+Verification
+------------
+
+To verify your configuration is set up correctly:
+
+1. From the source tree, open the ScratchSolution\ScratchSolution.sln solution file in Visual Studio 2012.
+2. Build the solution
+3. Right-click on the Test project and select "Set as StartUp Project"
+4. Use Ctrl-F5 to run the test project
+
+If you see all of the projects build correctly and the test passes, then your configuration is correct.
