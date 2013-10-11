@@ -7,12 +7,12 @@ Outline of lectures
     * Dennard Scaling
 * Day 2 - Basic tools for concurrency
     * Threads
-    * Mutexes and asychronous operations
+    * Mutexes and asynchronous operations
 * Day 3 - More Tools and Case studies
     * Atomics and the C++ memory model
     * When memory is not synchronized
     * Creating a responsive GUI
-* Day 4 - Techniques for conncurrent software design
+* Day 4 - Techniques for concurrent software design
     * Improving performance and scalability
     * Task-based concurrency
 * Day 5 - Distributed memory parallel concurrency
