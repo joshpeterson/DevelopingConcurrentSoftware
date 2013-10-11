@@ -8,7 +8,7 @@ Outline of lectures
 * Day 2 - Basic tools for concurrency
     * Threads
     * Mutexes and asynchronous operations
-* Day 3 - More Tools and Case studies
+* Day 3 - More tools and Case studies
     * Atomics and the C++ memory model
     * When memory is not synchronized
     * Creating a responsive GUI
