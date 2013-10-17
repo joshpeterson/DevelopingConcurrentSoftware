@@ -12,6 +12,12 @@
 *.la
 *.a
 
+# Visual Studio files
+Debug
+Release
+*.opensdf
+*.sdf
+
 # Vim temporary files
 *~
 *.swp
