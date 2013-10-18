@@ -17,6 +17,10 @@ Debug
 Release
 *.opensdf
 *.sdf
+*.suo
+
+# Power Poitn files
+~$*
 
 # Vim temporary files
 *~
