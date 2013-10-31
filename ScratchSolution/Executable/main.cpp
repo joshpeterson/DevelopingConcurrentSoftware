@@ -3,8 +3,8 @@
 
 int main()
 {
-	std::cout << library::get_message();
+    std::cout << library::get_message();
 
-	std::cout << "Press any key to continue...\n";
-	std::getchar();
+    std::cout << "Press any key to continue...\n";
+    std::getchar();
 }

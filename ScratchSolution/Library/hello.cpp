@@ -3,10 +3,10 @@
 namespace library
 {
 
-std::string get_message()
-{
-	return "Hello, world!\n";
-}
+    std::string get_message()
+    {
+        return "Hello, world!\n";
+    }
 
 }
 

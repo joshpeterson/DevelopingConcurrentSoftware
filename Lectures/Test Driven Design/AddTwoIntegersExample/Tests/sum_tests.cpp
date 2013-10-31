@@ -3,5 +3,5 @@
 
 TEST(SumTests, SumsZeroAndZero)
 {
-    
+
 }
