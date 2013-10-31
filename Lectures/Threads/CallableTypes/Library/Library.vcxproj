@@ -10,6 +10,14 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="callable_types.cpp" />
+    <ClCompile Include="callable_types_testable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="callable_types.h" />
+    <ClInclude Include="callable_types_testable.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7D660805-344B-4441-914A-0EC66C7D64C5}</ProjectGuid>
     <RootNamespace>Library</RootNamespace>
