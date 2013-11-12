@@ -7,7 +7,8 @@ Outline of lectures
     * Dennard Scaling
 * Day 2 - Basic tools for concurrency
     * Threads
-    * Mutexes and asynchronous operations
+    * Mutexes
+    * Asynchronous operations
 * Day 3 - More tools and case studies
     * Atomics and the C++ memory model
     * When memory is not synchronized
