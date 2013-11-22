@@ -4,9 +4,16 @@
 #include <ole2.h>
 #include <commctrl.h>
 #include <shlwapi.h>
+#include "pi_calculator.h"
+#include <sstream>
+#include <future>
+#include <chrono>
 
 HINSTANCE g_hinst;                          /* This application's HINSTANCE */
 HWND g_hwndChild;                           /* Optional child window */
+HWND hwndMain;
+HWND hwndButton;
+HWND hwndEdit;
 
 /*
  *  OnSize
@@ -78,13 +85,48 @@ OnPrintClient(HWND hwnd, HDC hdc)
 
 }
 
+BOOL PumpMessage()
+{
+    MSG msg;
+
+    BOOL shouldContinue = GetMessage(&msg, NULL, 0, 0);
+    TranslateMessage(&msg);
+    DispatchMessage(&msg);
+
+    return shouldContinue;
+}
+
 /*
  *  OnCommand
  *      Called when the button is clicked.
  */
 void
-OnCommand()
+OnCommand(HWND hwndControl)
 {
+    if (hwndControl == hwndButton)
+    {
+        char text[100];
+        Edit_GetText(hwndEdit, text, 100);
+        int number_of_iterations = atoi(text);
+        auto pi = std::async(calculate_pi, number_of_iterations);
+
+        bool window_closed = false;
+        while (window_closed || pi.wait_for(std::chrono::milliseconds(100)) != std::future_status::ready)
+        {
+            auto shouldContinue = PumpMessage();
+            if (!shouldContinue)
+                window_closed = true;
+        }
+
+        if (!window_closed)
+        {
+            std::stringstream message;
+            message.precision(15);
+            message << "The value of pi is: " << pi.get();
+
+            MessageBox(hwndMain, message.str().c_str(), "pi", 0);
+        }
+    }
 }
 
 /*
@@ -100,7 +142,7 @@ WndProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
         HANDLE_MSG(hwnd, WM_DESTROY, OnDestroy);
         HANDLE_MSG(hwnd, WM_PAINT, OnPaint);
         case WM_PRINTCLIENT: OnPrintClient(hwnd, (HDC)wParam); return 0;
-        case WM_COMMAND: OnCommand(); return 0;
+        case WM_COMMAND: OnCommand((HWND)lParam); return 0;
     }
 
     return DefWindowProc(hwnd, uiMsg, wParam, lParam);
@@ -130,53 +172,47 @@ InitApp(void)
 int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hinstPrev,
                    LPSTR lpCmdLine, int nShowCmd)
 {
-    MSG msg;
-    HWND hwnd;
-
     g_hinst = hinst;
 
     if (!InitApp()) return 0;
 
-    hwnd = CreateWindow(
+    hwndMain = CreateWindow(
         TEXT("Scratch"),                /* Class Name */
-        TEXT("Scratch"),                /* Title */
+        TEXT("Pi Calculator"),          /* Title */
         WS_OVERLAPPEDWINDOW,            /* Style */
         CW_USEDEFAULT, CW_USEDEFAULT,   /* Position */
-        CW_USEDEFAULT, CW_USEDEFAULT,   /* Size */
+        135, 180,                       /* Size */
         NULL,                           /* Parent */
         NULL,                           /* No menu */
         hinst,                          /* Instance */
         0);                             /* No special parameters */
 
-    HWND hwndButton = CreateWindow( 
+    hwndButton = CreateWindow( 
         TEXT("BUTTON"),  // Predefined class; Unicode assumed 
-        TEXT("OK"),      // Button text 
+        TEXT("Calculate pi"),      // Button text 
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  // Styles 
         10,         // x position 
-        10,         // y position 
+        40,         // y position 
         100,        // Button width
         100,        // Button height
-        hwnd,     // Parent window
+        hwndMain,     // Parent window
         NULL,       // No menu.
-        (HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE), 
+        (HINSTANCE)GetWindowLong(hwndMain, GWL_HINSTANCE), 
         NULL);      // Pointer not needed
 
-    HWND hwndEdit = CreateWindowEx(
+    hwndEdit = CreateWindowEx(
         0, TEXT("EDIT"),   // predefined class 
         NULL,         // no window title 
         WS_CHILD | WS_VISIBLE | ES_LEFT | WS_BORDER,
-        10, 150, 100, 20,   // set size in WM_SIZE message 
-        hwnd,         // parent window 
+        10, 10, 100, 20,   // set size and position
+        hwndMain,         // parent window 
         NULL,  // edit control ID 
-        (HINSTANCE) GetWindowLong(hwnd, GWL_HINSTANCE), 
+        (HINSTANCE) GetWindowLong(hwndMain, GWL_HINSTANCE), 
         NULL);        // pointer not needed
 
-    ShowWindow(hwnd, nShowCmd);
+    ShowWindow(hwndMain, nShowCmd);
 
-    while (GetMessage(&msg, NULL, 0, 0)) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-    }
+    while (PumpMessage());
 
     return 0;
 }
