@@ -1,4 +1,5 @@
-// This scratch program is taken from http://blogs.msdn.com/b/oldnewthing/archive/2003/07/23/54576.aspx
+// This scratch program is taken from http://blogs.msdn.com/b/oldnewthing/archive/2003/07/23/54576.aspx.
+// I have slightly modified it.
 #include <windows.h>
 #include <windowsx.h>
 #include <ole2.h>
@@ -8,62 +9,73 @@
 #include <sstream>
 #include <future>
 #include <chrono>
+#include <condition_variable>
 
-HINSTANCE g_hinst;                          /* This application's HINSTANCE */
-HWND g_hwndChild;                           /* Optional child window */
+BOOL PumpMessage();
+
+HINSTANCE g_hinst;
+HWND g_hwndChild;
 HWND hwndMain;
 HWND hwndButton;
 HWND hwndEdit;
+bool window_closed = false;
 
-/*
- *  OnSize
- *      If we have an inner child, resize it to fit.
- */
-void
-OnSize(HWND hwnd, UINT state, int cx, int cy)
+void HandleButtonClick()
 {
-    if (g_hwndChild) {
-        MoveWindow(g_hwndChild, 0, 0, cx, cy, TRUE);
+    char text[100];
+    Edit_GetText(hwndEdit, text, 100);
+    int number_of_iterations = atoi(text);
+
+    std::condition_variable exit_condition;
+    calculate_pi pi_calculator(&exit_condition, &window_closed);
+
+    auto pi = std::async(pi_calculator, number_of_iterations);
+
+    while (pi.wait_for(std::chrono::milliseconds(100)) != std::future_status::ready)
+    {
+        auto shouldContinue = PumpMessage();
+        if (!shouldContinue)
+        {
+            window_closed = true;
+            exit_condition.notify_one();
+            pi.wait();
+            break;
+        }
+    }
+
+    if (!window_closed)
+    {
+        std::stringstream message;
+        message.precision(15);
+        message << "The value of pi is: " << pi.get();
+
+        MessageBox(hwndMain, message.str().c_str(), "pi", 0);
     }
 }
 
-/*
- *  OnCreate
- *      Applications will typically override this and maybe even
- *      create a child window.
- */
-BOOL
-OnCreate(HWND hwnd, LPCREATESTRUCT lpcs)
+// The code below is necessary, but not too interesting for this example. It can be safely ignored.
+
+void OnSize(HWND hwnd, UINT state, int cx, int cy)
+{
+    if (g_hwndChild)
+        MoveWindow(g_hwndChild, 0, 0, cx, cy, TRUE);
+}
+
+BOOL OnCreate(HWND hwnd, LPCREATESTRUCT lpcs)
 {
     return TRUE;
 }
 
-/*
- *  OnDestroy
- *      Post a quit message because our application is over when the
- *      user closes this window.
- */
-void
-OnDestroy(HWND hwnd)
+void OnDestroy(HWND hwnd)
 {
     PostQuitMessage(0);
 }
 
-/*
- *  PaintContent
- *      Interesting things will be painted here eventually.
- */
-void
-PaintContent(HWND hwnd, PAINTSTRUCT *pps)
+void PaintContent(HWND hwnd, PAINTSTRUCT *pps)
 {
 }
 
-/*
- *  OnPaint
- *      Paint the content as part of the paint cycle.
- */
-void
-OnPaint(HWND hwnd)
+void OnPaint(HWND hwnd)
 {
     PAINTSTRUCT ps;
     BeginPaint(hwnd, &ps);
@@ -71,12 +83,7 @@ OnPaint(HWND hwnd)
     EndPaint(hwnd, &ps);
 }
 
-/*
- *  OnPrintClient
- *      Paint the content as requested by USER.
- */
-void
-OnPrintClient(HWND hwnd, HDC hdc)
+void OnPrintClient(HWND hwnd, HDC hdc)
 {
     PAINTSTRUCT ps;
     ps.hdc = hdc;
@@ -87,6 +94,9 @@ OnPrintClient(HWND hwnd, HDC hdc)
 
 BOOL PumpMessage()
 {
+    if (window_closed)
+        return FALSE;
+
     MSG msg;
 
     BOOL shouldContinue = GetMessage(&msg, NULL, 0, 0);
@@ -96,44 +106,13 @@ BOOL PumpMessage()
     return shouldContinue;
 }
 
-/*
- *  OnCommand
- *      Called when the button is clicked.
- */
-void
-OnCommand(HWND hwndControl)
+void OnCommand(HWND hwndControl)
 {
     if (hwndControl == hwndButton)
-    {
-        char text[100];
-        Edit_GetText(hwndEdit, text, 100);
-        int number_of_iterations = atoi(text);
-        auto pi = std::async(calculate_pi, number_of_iterations);
-
-        bool window_closed = false;
-        while (window_closed || pi.wait_for(std::chrono::milliseconds(100)) != std::future_status::ready)
-        {
-            auto shouldContinue = PumpMessage();
-            if (!shouldContinue)
-                window_closed = true;
-        }
-
-        if (!window_closed)
-        {
-            std::stringstream message;
-            message.precision(15);
-            message << "The value of pi is: " << pi.get();
-
-            MessageBox(hwndMain, message.str().c_str(), "pi", 0);
-        }
-    }
+        HandleButtonClick();
 }
 
-/*
- *  Window procedure
- */
-LRESULT CALLBACK
-WndProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uiMsg) {
 
@@ -148,8 +127,7 @@ WndProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, uiMsg, wParam, lParam);
 }
 
-BOOL
-InitApp(void)
+BOOL InitApp(void)
 {
     WNDCLASS wc;
 
@@ -169,8 +147,7 @@ InitApp(void)
     return TRUE;
 }
 
-int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hinstPrev,
-                   LPSTR lpCmdLine, int nShowCmd)
+int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hinstPrev, LPSTR lpCmdLine, int nShowCmd)
 {
     g_hinst = hinst;
 
@@ -188,27 +165,27 @@ int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hinstPrev,
         0);                             /* No special parameters */
 
     hwndButton = CreateWindow( 
-        TEXT("BUTTON"),  // Predefined class; Unicode assumed 
-        TEXT("Calculate pi"),      // Button text 
-        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  // Styles 
-        10,         // x position 
-        40,         // y position 
-        100,        // Button width
-        100,        // Button height
-        hwndMain,     // Parent window
-        NULL,       // No menu.
+        TEXT("BUTTON"),                 // Predefined class; Unicode assumed 
+        TEXT("Calculate pi"),           // Button text 
+        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+        10,                             // x position 
+        40,                             // y position 
+        100,                            // Button width
+        100,                            // Button height
+        hwndMain,
+        NULL,
         (HINSTANCE)GetWindowLong(hwndMain, GWL_HINSTANCE), 
-        NULL);      // Pointer not needed
+        NULL);
 
     hwndEdit = CreateWindowEx(
-        0, TEXT("EDIT"),   // predefined class 
-        NULL,         // no window title 
+        0, TEXT("EDIT"),                // predefined class 
+        NULL,                           // no window title 
         WS_CHILD | WS_VISIBLE | ES_LEFT | WS_BORDER,
-        10, 10, 100, 20,   // set size and position
-        hwndMain,         // parent window 
-        NULL,  // edit control ID 
+        10, 10, 100, 20,                // set size and position
+        hwndMain,
+        NULL,
         (HINSTANCE) GetWindowLong(hwndMain, GWL_HINSTANCE), 
-        NULL);        // pointer not needed
+        NULL);
 
     ShowWindow(hwndMain, nShowCmd);
 
