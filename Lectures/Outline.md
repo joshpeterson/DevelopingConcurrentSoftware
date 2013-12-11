@@ -9,13 +9,14 @@ Outline of lectures
     * Threads
     * Mutexes
     * Asynchronous operations
-* Day 3 - More tools and case studies
+* Day 3 - More tools and techniques
     * Atomics and the C++ memory model
-    * When memory is not synchronized
-    * Creating a responsive GUI
-* Day 4 - Techniques for concurrent software design
-    * Improving performance and scalability
+    * Designing concurrent software
     * Task-based concurrency
+* Day 4 - Case studies
+    * Case study: Atomics and object lifetime
+    * Case study: Making a cache thread safe
+    * Case study: Synchronizing a thread pool 
 * Day 5 - Distributed memory parallel concurrency
     * Introduction to MPI
     * Hybrid parallelism
