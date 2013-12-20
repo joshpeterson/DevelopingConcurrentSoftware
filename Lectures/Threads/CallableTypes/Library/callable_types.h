@@ -14,5 +14,4 @@ namespace callable_types
     public:
         void member_function() const;
     };
-
 }
