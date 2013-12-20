@@ -2,14 +2,14 @@ Tools for this course
 =====================
 The following tools will be used in this course:
 
-1. Visual Studio Express 2012 for Windows Desktop
+1. Visual Studio Express 2013 for Windows Desktop
 2. Git
 3. Github
 4. Google Test
 
-Visual Studio 2012
+Visual Studio 2013
 ------------------
-Any version of Visual Studio 2012 which compiles C++ will work. I'm using Visual Studio Express 2012 for Windows Desktop. It can be downloaded [here](http://www.microsoft.com/en-us/download/details.aspx?id=34673). After downloading it, perform a full installation.
+Any version of Visual Studio 2013 which compiles C++ will work. I'm using Visual Studio Express 2013 for Windows Desktop. It can be downloaded [here](http://www.microsoft.com/en-us/download/details.aspx?id=40787). After downloading it, perform a full installation.
 
 If you are not using Windows, any C++ compiler with support for the C++11 threading library will work.
 
