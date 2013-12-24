@@ -3,17 +3,17 @@
 #include <chrono>
 #include "reference_counted.h"
 
-void releaser(reference_counted* tester, int call_identifier)
+void releaser(reference_counted<int>* tester, int call_identifier)
 {
 	tester->release(call_identifier);
 }
 
 int main()
 {
-	reference_counted tester;
+	reference_counted<int> tester(42);
 
 	// Increment reference count so multiple threads will have time to launch.
-	for (auto i = 0; i < 4500; ++i)
+	for (auto i = 0; i < 1000; ++i)
 		tester.add_reference();
 
 	for (auto i = 0; i < 10000; ++i)

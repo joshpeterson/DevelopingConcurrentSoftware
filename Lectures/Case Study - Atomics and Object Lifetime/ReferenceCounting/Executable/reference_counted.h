@@ -3,12 +3,17 @@
 
 #include <atomic>
 #include <iostream>
-#include <mutex>
 
+template <typename T>
 class reference_counted
 {
 public:
-	reference_counted() : count_(0) {}
+	reference_counted(T initial_value) : count_(0)
+	{
+		value_ = new T;
+		*value_ = initial_value;
+	}
+
 	void add_reference()
 	{
 		++count_;
@@ -16,16 +21,14 @@ public:
 
 	void release(int call_identifier)
 	{
-		--count_;
-		if (count_ == 0)
-		{
-			std::lock_guard<std::mutex> lock(m_);
-			std::cout << "Release caused zero count for call " << call_identifier << std::endl;
-		}
+		--count_;			// 1
+		if (count_ == 0)	// 2
+			delete value_;
 	}
+
 private:
+	T* value_;
 	std::atomic<int> count_;
-	std::mutex m_;
 };
 
 #endif // __REFERENCE_COUNTED_H
