@@ -61,7 +61,7 @@ Verification
 
 To verify your configuration is set up correctly:
 
-1. From the source tree, open the ScratchSolution\ScratchSolution.sln solution file in Visual Studio 2012.
+1. From the source tree, open the ScratchSolution\ScratchSolution.sln solution file in Visual Studio 2013.
 2. Build the solution
 3. Right-click on the Test project and select "Set as StartUp Project"
 4. Use Ctrl-F5 to run the test project
