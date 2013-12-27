@@ -1,4 +1,4 @@
-DevelopingConcurrentSoftware
+Developing Concurrent Software
 ============================
 
-Materials for a course about developing concurrent software using C++
+This repository includes materials for a course about developing concurrent software using C++.

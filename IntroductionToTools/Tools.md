@@ -48,9 +48,9 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 Google Test
 -----------
-Google Test is a C++ unit testing framework. In order to use it with Visual Studio 2012, I have made a few modifications (details are available [here](http://stackoverflow.com/questions/12558327/google-test-in-visual-studio-2012)). To install it:
+Google Test is a C++ unit testing framework. In order to use it with Visual Studio 2013, I have made a few modifications (details are available [here](http://stackoverflow.com/questions/12558327/google-test-in-visual-studio-2012)). To install it:
 
-1. Download my modified and built version Google Test [here](https://docs.google.com/file/d/0B_iq84mNTIzZU2dIZkRNX1gwVUk/edit?usp=sharing) (choose File > Download from the menu)
+1. Download my modified and built version Google Test [here](https://drive.google.com/file/d/0B_iq84mNTIzZaTJrSFBhUmw0d3c/edit?usp=sharing) (choose File > Download from the menu)
 2. Extract the .zip file to some location on your machine
 3. Set the GTEST_DIR environment variable to point to the location of the extracted file. For example, if you extracted the files to C:\Development, then
 
@@ -61,7 +61,7 @@ Verification
 
 To verify your configuration is set up correctly:
 
-1. From the source tree, open the ScratchSolution\ScratchSolution.sln solution file in Visual Studio 2012.
+1. From the source tree, open the ScratchSolution\ScratchSolution.sln solution file in Visual Studio 2013.
 2. Build the solution
 3. Right-click on the Test project and select "Set as StartUp Project"
 4. Use Ctrl-F5 to run the test project
