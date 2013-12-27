@@ -48,7 +48,7 @@ Github is a website which provides free Git repository hosting, code sharing, an
 
 Google Test
 -----------
-Google Test is a C++ unit testing framework. In order to use it with Visual Studio 2012, I have made a few modifications (details are available [here](http://stackoverflow.com/questions/12558327/google-test-in-visual-studio-2012)). To install it:
+Google Test is a C++ unit testing framework. In order to use it with Visual Studio 2013, I have made a few modifications (details are available [here](http://stackoverflow.com/questions/12558327/google-test-in-visual-studio-2012)). To install it:
 
 1. Download my modified and built version Google Test [here](https://docs.google.com/file/d/0B_iq84mNTIzZU2dIZkRNX1gwVUk/edit?usp=sharing) (choose File > Download from the menu)
 2. Extract the .zip file to some location on your machine
