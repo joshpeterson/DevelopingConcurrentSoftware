@@ -17,8 +17,9 @@ Verification
 2. Build the Executable project in the Debug configuration.
 3. Open a command prompt (it does not need to be a administrator prompt).
 4. Change to the Lectures\Introduction to MPI\MPIHelloWorld\Debug directory.
-5. Run the command: mpiexec -n 2 Executable.exe
+5. Run the command: `mpiexec -n 2 Executable.exe`
 6. Verify that you see the following output:
 
 Hello, world from rank 0!
+
 Hello, world from rank 1!
