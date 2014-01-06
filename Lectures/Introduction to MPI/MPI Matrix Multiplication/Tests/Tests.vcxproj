@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gauss_task_tests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mock_task.cpp" />
     <ClCompile Include="mpi_parallel_task_tests.cpp" />

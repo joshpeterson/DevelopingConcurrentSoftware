@@ -17,7 +17,7 @@ public:
         latest_end_value_from_any_instance_ = end;
     }
 
-    std::vector<int> reduce(const std::vector<unsigned int>& input)
+    std::vector<unsigned int> reduce(const std::vector<unsigned int>& input)
     {
         numUnique_value_ = input.size() == 3 ? input[0] : 0;
         numNonunique_value_ = input.size() == 3 ? input[1] : 0;
@@ -27,7 +27,7 @@ public:
         latest_numNonunique_value_from_any_instance_ = input.size() == 3 ? input[1] : 0;
         latest_numNo_value_from_any_instance_ = input.size() == 3 ? input[2] : 0;
 
-        std::vector<int> result;
+        std::vector<unsigned int> result;
         result.emplace_back(42);
         result.emplace_back(43);
         result.emplace_back(44);

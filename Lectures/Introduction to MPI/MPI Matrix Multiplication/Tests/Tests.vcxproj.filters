@@ -20,6 +20,9 @@
     <ClCompile Include="mock_task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gauss_task_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="partitioning_tracker.h">

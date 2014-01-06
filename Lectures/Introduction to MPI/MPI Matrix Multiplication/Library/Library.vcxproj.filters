@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="guass_task.cpp">
+    <ClCompile Include="gauss_task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

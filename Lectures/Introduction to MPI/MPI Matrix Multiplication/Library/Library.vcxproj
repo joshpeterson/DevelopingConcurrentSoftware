@@ -17,7 +17,7 @@
     <ClInclude Include="mpi_parallel_task.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="guass_task.cpp" />
+    <ClCompile Include="gauss_task.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7D660805-344B-4441-914A-0EC66C7D64C5}</ProjectGuid>
