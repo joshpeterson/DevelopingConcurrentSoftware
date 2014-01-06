@@ -20,9 +20,12 @@
     <ClInclude Include="mpi_parallel_task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gauss_task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dummy.cpp">
+    <ClCompile Include="guass_task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
