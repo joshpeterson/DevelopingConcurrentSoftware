@@ -1,5 +1,7 @@
 This document outlines the process of installing the MPICH2 MPI library on Windows.
 
+Please follow these instructions *exactly* as the installation of the MPICH2 libraries on Windows can be difficult to complete correctly.
+
 Installation
 ------------
 1. Download the Windows binary [here](http://www.mcs.anl.gov/research/projects/mpich2staging/goodell/downloads/tarballs/1.4.1p1/mpich2-1.4.1p1-win-ia32.msi).
