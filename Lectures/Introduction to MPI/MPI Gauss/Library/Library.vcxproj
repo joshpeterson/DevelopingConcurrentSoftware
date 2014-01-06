@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="even_partitioning_of_consecutive_integers.h" />
     <ClInclude Include="gauss_task.h" />
     <ClInclude Include="mpi_adapter.h" />
     <ClInclude Include="mpi_adapter_interface.h" />

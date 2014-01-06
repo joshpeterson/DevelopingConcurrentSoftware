@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="even_partitioning_of_consecutive_integers_tests.cpp" />
     <ClCompile Include="gauss_task_tests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mock_task.cpp" />

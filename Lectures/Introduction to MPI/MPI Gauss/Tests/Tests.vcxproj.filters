@@ -23,6 +23,9 @@
     <ClCompile Include="gauss_task_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="even_partitioning_of_consecutive_integers_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="partitioning_tracker.h">
