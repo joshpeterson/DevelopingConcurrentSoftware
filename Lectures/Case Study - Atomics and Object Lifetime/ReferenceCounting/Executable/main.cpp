@@ -1,6 +1,6 @@
 #include <iostream>
 #include <thread>
-#include <chrono>
+#include <vector>
 #include "reference_counted.h"
 
 void releaser(reference_counted<int>* tester, int call_identifier)
@@ -11,15 +11,17 @@ void releaser(reference_counted<int>* tester, int call_identifier)
 int main()
 {
     reference_counted<int> tester(42);
+    std::vector<std::thread> threads;
 
     // Increment reference count so multiple threads will have time to launch.
     for (auto i = 0; i < 1000; ++i)
         tester.add_reference();
 
-    for (auto i = 0; i < 10000; ++i)
-        std::thread(&releaser, &tester, i).detach();
+    for (auto i = 0; i < 1000; ++i)
+        threads.push_back(std::thread(&releaser, &tester, i));
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    for (auto& thread : threads)
+        thread.join();
 
     std::cout << "Press any key to continue...\n";
     std::getchar();
