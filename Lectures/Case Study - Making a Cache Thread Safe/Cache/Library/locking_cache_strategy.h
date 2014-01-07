@@ -9,8 +9,8 @@ class locking_cache_strategy_helper : public cache_strategy_helper
 public:
     locking_cache_strategy_helper();
 private:
-    std::mutex m_;
-    std::lock_guard<std::mutex> l_;
+    std::mutex mutex_;
+    std::lock_guard<std::mutex> lock_;
 };
 
 class locking_cache_strategy :public cache_strategy

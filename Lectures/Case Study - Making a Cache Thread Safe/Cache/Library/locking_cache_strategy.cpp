@@ -1,6 +1,6 @@
 #include "locking_cache_strategy.h"
 
-locking_cache_strategy_helper::locking_cache_strategy_helper() : l_(m_)
+locking_cache_strategy_helper::locking_cache_strategy_helper() : lock_(mutex_)
 {
 }
 
