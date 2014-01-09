@@ -26,6 +26,9 @@
     <ClInclude Include="even_partitioning_of_consecutive_integers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mpi_parallel_task_scatter_gather.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gauss_task.cpp">

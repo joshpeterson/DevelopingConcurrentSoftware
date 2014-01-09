@@ -16,6 +16,7 @@
     <ClInclude Include="mpi_adapter.h" />
     <ClInclude Include="mpi_adapter_interface.h" />
     <ClInclude Include="mpi_parallel_task.h" />
+    <ClInclude Include="mpi_parallel_task_scatter_gather.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gauss_task.cpp" />
