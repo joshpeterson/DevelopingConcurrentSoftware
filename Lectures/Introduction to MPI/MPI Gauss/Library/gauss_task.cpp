@@ -4,14 +4,17 @@ gauss_task::gauss_task() : sum_(0) {}
 
 void gauss_task::map(unsigned int begin, unsigned int end)
 {
-    for (auto i = begin; i < end; ++i)
+    for (auto i = begin; i <= end; ++i)
         sum_ += i;
 }
 
-std::vector<unsigned int> gauss_task::reduce(const std::vector<unsigned int>& input)
+unsigned int gauss_task::reduce(unsigned int input)
 {
-    std::vector<unsigned int> result;
-    result.emplace_back(sum_);
+    sum_ += input;
+    return sum_;
+}
 
-    return result;
+int gauss_task::get_sum() const
+{
+    return sum_;
 }

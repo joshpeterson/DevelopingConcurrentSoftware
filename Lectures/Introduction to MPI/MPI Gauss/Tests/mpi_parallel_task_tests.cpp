@@ -297,7 +297,7 @@ TEST(MpiParallelTaskTests, StartCallsMapOnNewTaskInstanceWithProperEndValueForSe
     ASSERT_EQ(92U, task.GetLatestEndValueFromAnyInstance()) << "The map method on the task was not called with the proper end iterator value, which is not expected.";
 }
 
-TEST(MpiParallelTaskTests, StartCallsReduceOnNewTaskInstanceWithZeroValueForNumberOfUniqueSolutions)
+TEST(MpiParallelTaskTests, StartCallsReduceOnNewTaskInstanceWithZeroValueForInput)
 {
     MockTask task;
     MockMpiAdapter mpiAdapter(1);
@@ -309,40 +309,10 @@ TEST(MpiParallelTaskTests, StartCallsReduceOnNewTaskInstanceWithZeroValueForNumb
 
     runner.start();
 
-    ASSERT_EQ(0U, task.GetLatestNumUniqueValueFromAnyInstance()) << "The reduce method on the slave task was not called with zero unique solutions, which is not expected.";
+    ASSERT_EQ(0U, task.GetLatestReduceInputValueFromAnyInstance()) << "The reduce method on the slave task was not called with zero input value, which is not expected.";
 }
 
-TEST(MpiParallelTaskTests, StartCallsReduceOnNewTaskInstanceWithZeroValueForNumberOfNonuniqueSolutions)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter(1);
-
-    const int unused_number_of_partitions = 13;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, two_partitions, unused_number_of_partitions);
-
-    task.ClearLatestValuesFromAnyInstance();
-
-    runner.start();
-
-    ASSERT_EQ(0U, task.GetLatestNumNonuniqueValueFromAnyInstance()) << "The reduce method on the slave task was not called with zero non-unique solutions, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, StartCallsReduceOnNewTaskInstanceWithZeroValueForNumberOfNoSolutions)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter(1);
-
-    const int unused_number_of_partitions = 13;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, two_partitions, unused_number_of_partitions);
-
-    task.ClearLatestValuesFromAnyInstance();
-
-    runner.start();
-
-    ASSERT_EQ(0U, task.GetLatestNumNoValueFromAnyInstance()) << "The reduce method on the slave task was not called with zero no solutions, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithNumberOfUniqueSolutions)
+TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithACountOfOneValue)
 {
     MockTask task;
     MockMpiAdapter mpiAdapter(1);
@@ -352,46 +322,7 @@ TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithNumberOfUniqueS
 
     runner.start();
 
-    ASSERT_EQ(42U, mpiAdapter.GetFirstIntegerValueInMpiSend()) << "The MpiSend method was not called with the number of unique solutions as the first value, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithNumberOfNonuniqueSolutions)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter(1);
-
-    const int unused_number_of_partitions = 13;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, two_partitions, unused_number_of_partitions);
-
-    runner.start();
-
-    ASSERT_EQ(43U, mpiAdapter.GetSecondIntegerValueInMpiSend()) << "The MpiSend method was not called with the number of non-unique solutions as the second value, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithNumberOfNoSolutions)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter(1);
-
-    const int unused_number_of_partitions = 13;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, two_partitions, unused_number_of_partitions);
-
-    runner.start();
-
-    ASSERT_EQ(44U, mpiAdapter.GetThirdIntegerValueInMpiSend()) << "The MpiSend method was not called with the number of no solutions as the third value, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithACountOfThreeValues)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter(1);
-
-    const int unused_number_of_partitions = 13;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, two_partitions, unused_number_of_partitions);
-
-    runner.start();
-
-    ASSERT_EQ(3, mpiAdapter.GetCountInMpiSend()) << "The MpiSend method was not called with a count of three values, which is not expected.";
+    ASSERT_EQ(1, mpiAdapter.GetCountInMpiSend()) << "The MpiSend method was not called with a count of one value, which is not expected.";
 }
 
 TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithADestinationOfZero)
@@ -407,7 +338,7 @@ TEST(MpiParallelTaskTests, StartCallsMpiSendForRankOneProcessWithADestinationOfZ
     ASSERT_EQ(0, mpiAdapter.GetDestinationInMpiSend()) << "The MpiSend method was not called with a destination of zero, which is not expected.";
 }
 
-TEST(MpiParallelTaskTests, CompleteCallsMpiRecvForRankZeroProcessWithACountOfThree)
+TEST(MpiParallelTaskTests, CompleteCallsMpiRecvForRankZeroProcessWithACountOfOne)
 {
     MockTask task;
     MockMpiAdapter mpiAdapter;
@@ -417,7 +348,7 @@ TEST(MpiParallelTaskTests, CompleteCallsMpiRecvForRankZeroProcessWithACountOfThr
 
     runner.complete();
 
-    ASSERT_EQ(3, mpiAdapter.GetCountInMpiRecv()) << "The MpiRecv method was not called with a count of three, which is not expected.";
+    ASSERT_EQ(1, mpiAdapter.GetCountInMpiRecv()) << "The MpiRecv method was not called with a count of one, which is not expected.";
 }
 
 TEST(MpiParallelTaskTests, CompleteDoesNotCallMpiRecvForANonRankZeroProcess)
@@ -451,7 +382,7 @@ TEST(MpiParallelTaskTests, CompleteCallsMpiRecvForRankZeroProcessWithASourceForE
     ASSERT_EQ(5, mpiAdapter.GetSourcesInMpiRecv()[4]) << "The MpiRecv method was not called for slave node 5, which is not expected.";
 }
 
-TEST(MpiParallelTaskTests, CompleteCallsReduceOnTheOriginalTaskForRankZeroProcessWithTheNumberOfUniqueSolutionsFromMpiRecvForEachSlaveProcess)
+TEST(MpiParallelTaskTests, CompleteCallsReduceOnTheOriginalTaskForRankZeroProcessWithTheOutputValueFromMpiRecvForEachSlaveProcess)
 {
     MockTask task;
     MockMpiAdapter mpiAdapter;
@@ -462,33 +393,5 @@ TEST(MpiParallelTaskTests, CompleteCallsReduceOnTheOriginalTaskForRankZeroProces
     runner.complete();
 
     // The expected value comes directly from the MockMpiAdapter implementation.
-    ASSERT_EQ(67U, task.GetNumUniqueValue()) << "The reduce method was not called with the correct number of unique solutions, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, CompleteCallsReduceOnTheOriginalTaskForRankZeroProcessWithTheNumberOfNonuniqueSolutionsFromMpiRecvForEachSlaveProcess)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter;
-
-    const int number_of_partitions = 2;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, one_partition, number_of_partitions);
-
-    runner.complete();
-
-    // The expected value comes directly from the MockMpiAdapter implementation.
-    ASSERT_EQ(92U, task.GetNumNonuniqueValue()) << "The reduce method was not called with the correct number of non-unique solutions, which is not expected.";
-}
-
-TEST(MpiParallelTaskTests, CompleteCallsReduceOnTheOriginalTaskForRankZeroProcessWithTheNumberOfNoSolutionsFromMpiRecvForEachSlaveProcess)
-{
-    MockTask task;
-    MockMpiAdapter mpiAdapter;
-
-    const int number_of_partitions = 2;
-    auto runner = MpiParallelTask<MockTask>(task, mpiAdapter, 0U, 1U, one_partition, number_of_partitions);
-
-    runner.complete();
-
-    // The expected value comes directly from the MockMpiAdapter implementation.
-    ASSERT_EQ(104U, task.GetNumNoValue()) << "The reduce method was not called with the correct number of no solutions, which is not expected.";
+    ASSERT_EQ(67U, task.GetReduceInputValue()) << "The reduce method was not called with the correct reduce input value solutions, which is not expected.";
 }

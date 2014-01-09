@@ -16,8 +16,6 @@ public:
         int number_of_partitions) :
         task_(task), mpi_interface_(mpi_interface), begin_(begin), end_(end), partition_(partitioning_method), number_of_partitions_(number_of_partitions)
     {
-        iterator_values_.push_back(begin);
-        iterator_values_.push_back(end);
     }
 
     void start()
@@ -26,10 +24,14 @@ public:
 
         if (rank == 0)
         {
+            std::vector<unsigned int> iterator_values(2);
             auto partitions = partition_(begin_, end_, number_of_partitions_);
             for (size_t i = 1; i < partitions.size(); ++i)
             {
-                mpi_interface_.MpiSend(&iterator_values_[0], iterator_values_.size(), MPI_UINT32_T, i, 0, MPI_COMM_WORLD);
+                iterator_values[0] = partitions[i].first;
+                iterator_values[1] = partitions[i].second;
+
+                mpi_interface_.MpiSend(&iterator_values[0], 2, MPI_UINT32_T, i, 0, MPI_COMM_WORLD);
             }
 
             if (!partitions.empty())
@@ -37,15 +39,16 @@ public:
         }
         else
         {
+            std::vector<unsigned int> iterator_values(2);
             MPI_Status status;
-            mpi_interface_.MpiRecv(&iterator_values_[0], iterator_values_.size(), MPI_UINT32_T, 0, 0, MPI_COMM_WORLD, &status);
+            mpi_interface_.MpiRecv(&iterator_values[0], 2, MPI_UINT32_T, 0, 0, MPI_COMM_WORLD, &status);
 
             TaskType slave_task(task_);
-            slave_task.map(iterator_values_[0], iterator_values_[1]);
+            slave_task.map(iterator_values[0], iterator_values[1]);
 
-            auto result = slave_task.reduce(std::vector<unsigned int>());
+            auto result = slave_task.reduce(0);
 
-            mpi_interface_.MpiSend(&result[0], result.size(), MPI_UINT32_T, 0, 0, MPI_COMM_WORLD);
+            mpi_interface_.MpiSend(&result, 1, MPI_UINT32_T, 0, 0, MPI_COMM_WORLD);
         }
     }
 
@@ -58,8 +61,8 @@ public:
             for (int slave_process_rank = 1; slave_process_rank < number_of_partitions_; ++slave_process_rank)
             {
                 MPI_Status status;
-                std::vector<unsigned int> output(3);
-                mpi_interface_.MpiRecv(&output[0], 3, MPI_UINT32_T, slave_process_rank, 0, MPI_COMM_WORLD, &status);
+                unsigned int output;
+                mpi_interface_.MpiRecv(&output, 1, MPI_UINT32_T, slave_process_rank, 0, MPI_COMM_WORLD, &status);
 
                 task_.reduce(output);
             }
@@ -73,7 +76,6 @@ private:
     int end_;
     std::function<std::vector<std::pair<unsigned int, unsigned int>>(unsigned int, unsigned int, int)> partition_;
     int number_of_partitions_;
-    std::vector<unsigned int> iterator_values_;
 };
 
 #endif // __MPI_MAP_REDUCE_H

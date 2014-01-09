@@ -8,7 +8,9 @@ class gauss_task
 public:
     gauss_task();
     void map(unsigned int begin, unsigned int end);
-    std::vector<unsigned int> reduce(const std::vector<unsigned int>& input);
+    unsigned int reduce(unsigned int input);
+
+    int get_sum() const;
 private:
     unsigned int sum_;
 };

@@ -47,10 +47,8 @@ public:
 
         auto output_values = (unsigned int*)buf;
         output_values[0] = 67;
-        output_values[1] = 92;
-
-        if (count == 3)
-            output_values[2] = 104;
+        if (count == 2)
+            output_values[1] = 92;
     }
 
     int GetNumberOfTimesMpiSendCalled() const { return number_of_times_MpiSend_called_; }
