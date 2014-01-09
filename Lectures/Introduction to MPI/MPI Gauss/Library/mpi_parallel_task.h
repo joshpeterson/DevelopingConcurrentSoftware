@@ -1,5 +1,5 @@
-#ifndef __MPI_MAP_REDUCE_H
-#define __MPI_MAP_REDUCE_H
+#ifndef __MPI_PARALLEL_TASK_H
+#define __MPI_PARALLEL_TASK_H
 
 #include <functional>
 #include <utility>
@@ -78,4 +78,4 @@ private:
     int number_of_partitions_;
 };
 
-#endif // __MPI_MAP_REDUCE_H
+#endif // __MPI_PARALLEL_TASK_H
