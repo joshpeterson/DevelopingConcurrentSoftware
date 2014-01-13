@@ -15,7 +15,7 @@ int main()
     validate("6", "3", 3, subtract, "-");
     validate("38", "-4", 42, subtract, "-");
     validate("12", "5", 60, multiply, "*");
-    validate("-3", "6", 18, multiply, "*");
+    validate("-3", "6", -18, multiply, "*");
     validate("4", "2", 2, divide, "/");
     validate("13", "3", 4, divide, "/");
     validate_exception<std::invalid_argument>("10", "0", 4, divide, "/", "invalid_argument");
