@@ -6,15 +6,14 @@ Due: Prior to class on January 27
 
 Starting with the initial source code in Homework1.sln:
 
-1. Implement the four functions of the string calculator, add, subtract, multiply, divide.
+1. Implement the four functions of the string calculator, `add`, `subtract`, `multiply`, and `divide`.
 2. Each function accepts its left and right arguments as strings.
 3. Assume each string is an integer.
-4. The code in `main()` will be used to verify the correct behavior of the four functions. Each validation should be correct.
 
 You will be graded on:
 
-1. The correctness of the four functions as measured by the test in the main() function.
-2. The organization and structure of the test code.
+1. The correctness of the four functions as measured by the validations in the `main` function.
+2. The organization and content of the unit test code.
 
 This assignment is intended to be collaborative. You may work on it with one or two other students in the course, and provide one implementation for the group. You are also encouraged to submit your finished work prior to the due date and receive feedback from me.
 
