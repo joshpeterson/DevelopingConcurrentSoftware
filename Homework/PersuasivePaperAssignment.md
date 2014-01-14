@@ -4,13 +4,13 @@ Write a short paper persuading me about the correctness of one side of a given t
 
 Due: At the start of class on February 24
 
-Guidelines:
+Guidelines
 -----------
 1. The paper should be short. It must be long enough to make the case effectively, but as brief as possible. It should not be more than 2-3 pages long.
 2. You may choose any issue related to developing concurrent software. Part of the paper may involve persuading me that this issue matters.
 3. You may turn the paper in prior to the due date, and I'll provide my feedback. You can then modify the paper and submit it again.
 
-Possible Topics:
+Possible Topics
 ----------------
 These are possible topics. Please feel free to choose one of them or to find a different one that interests you.
 
