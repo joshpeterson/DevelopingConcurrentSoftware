@@ -40,7 +40,7 @@ int main()
         }
 
         if (all_data_matches)
-            std::cout << "Content of output data is correct.";
+            std::cout << "Content of output data is correct.\n";
     }
 
     std::cout << "Press any key to continue...\n";

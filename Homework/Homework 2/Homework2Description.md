@@ -20,3 +20,5 @@ You will be graded on:
 This assignment is intended to be collaborative. You may work on it with one or two other students in the course, and provide one implementation for the group. You are also encouraged to submit your finished work prior to the due date and receive feedback from me.
 
 You should submit your finished work as a pull request on Github.
+
+Note: You may find the new C++11 use of the keyword `using` handy for this homework. See [this](http://stackoverflow.com/questions/2795023/c-template-typedef) question on StackOverflow for details.
