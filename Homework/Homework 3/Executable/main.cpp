@@ -36,8 +36,8 @@ int main()
     verify_word_count("earth", 1);
     verify_word_count("four", 1);
     verify_word_count("is", 3);
-    verify_word_count("it", 3);
-    verify_word_count("we", 9);
+    verify_word_count("it", 5);
+    verify_word_count("we", 10);
 
     std::cout << "Press any key to continue...\n";
     std::getchar();
@@ -54,5 +54,5 @@ void verify_word_count(const std::string& word, int expected_count)
     if (counter.get_count() == expected_count)
         std::cout << "Correct - found \"" << word << "\" " << expected_count << " times\n";
     else
-        std::cout << "Incorrect - looking for " << word << " expected: " << expected_count << " actual: " << counter.get_count() << std::endl;
+        std::cout << "Incorrect - looking for \"" << word << "\" expected: " << expected_count << " actual: " << counter.get_count() << std::endl;
 }
