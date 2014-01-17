@@ -19,4 +19,4 @@ Outline of lectures
     * Case study: Synchronizing a thread pool 
 * Day 5 - Distributed memory parallel concurrency
     * Introduction to MPI
-    * Hybrid parallelism
+    * Hybrid concurrency
