@@ -33,10 +33,10 @@ public:
             if (i == number_of_threads_ - 1)
                 std::advance(it, number_of_leftover_tasks_for_last_range);
             thread_data->end = it;
+            
+			auto thread_handle = std::thread(&parallel_task::apply_task, this, thread_data);
 
-            auto thread_handle = std::thread(&parallel_task::apply_task, this, thread_data);
-
-            thread_data->thread_handle = std::move(thread_handle);
+			thread_data->thread_handle = std::move(thread_handle);
             created_tasks_.emplace_back(thread_data);
         }
     }
@@ -45,7 +45,7 @@ public:
     {
         for (auto created_task = created_tasks_.begin(); created_task != created_tasks_.end(); ++created_task)
         {
-            (*created_task)->thread_handle.join();
+			(*created_task)->thread_handle.join();
             original_task_.reduce((*created_task)->task);
         }
     }
@@ -60,7 +60,7 @@ private:
         IteratorType begin;
         IteratorType end;
         TaskType task;
-        std::thread thread_handle;
+		std::thread thread_handle;
     };
 
     IteratorType begin_;
@@ -70,7 +70,7 @@ private:
     std::vector<std::shared_ptr<task_thread_data>> created_tasks_;
     int number_of_threads_;
 
-    void apply_task(std::shared_ptr<task_thread_data> thread_data)
+	void apply_task(std::shared_ptr<task_thread_data> thread_data)
     {
         thread_data->task.map(thread_data->begin, thread_data->end);
     }
@@ -78,7 +78,7 @@ private:
 
 template <typename IteratorType, typename TaskType, typename TaskConstructorArgumentType>
 parallel_task<IteratorType, TaskType, TaskConstructorArgumentType> make_parallel_task(IteratorType begin, IteratorType end, TaskType& task,
-    TaskConstructorArgumentType argument, int number_of_threads)
+                                                                                      TaskConstructorArgumentType argument, int number_of_threads)
 {
     return parallel_task<IteratorType, TaskType, TaskConstructorArgumentType>(begin, end, task, argument, number_of_threads);
 }
