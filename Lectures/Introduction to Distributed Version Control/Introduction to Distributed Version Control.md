@@ -1,5 +1,5 @@
-Introduction to Distributed Version Control
-===========================================
+Introduction to Distributed Version Control Lecture Notes
+=========================================================
 Slide 2
 -------
 * Version control is a key tool for a software development.

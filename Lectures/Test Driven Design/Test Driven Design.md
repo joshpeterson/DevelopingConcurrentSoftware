@@ -1,5 +1,5 @@
-Test Driven Design
-==================
+Test Driven Design Lecture Notes
+================================
 Slide 1
 -------
 * TDD is a software development practice.
