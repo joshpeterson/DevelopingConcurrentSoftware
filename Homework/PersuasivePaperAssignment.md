@@ -1,6 +1,6 @@
 Persuasive Paper Assignment
 ===========================
-Write a short paper persuading me about the correctness of one side of a given technical issue.
+Write a short paper persuading me about the correctness of one side of a given technical issue. You may gather information about the topic yourself, or interview a professional software developer.
 
 Due: At the start of class on February 24
 
@@ -17,6 +17,6 @@ These are possible topics. Please feel free to choose one of them or to find a d
 * Average programmers should (or should not) write concurrent code.
 * Double-checked locking is broken in C++.
 * The best tool for concurrency is: (thread, process, task, etc.).
-* The future of concurrency does (or does not) lie in heteregenous hardware architectures. We should (or should not) re-write our code to support them.
-* Functional languages are the best tool for developing concurrenct software.
+* The future of concurrency does (or does not) lie in heterogeneous hardware architectures. We should (or should not) re-write our code to support them.
+* Functional languages are the best tool for developing concurrent software.
 * The actor pattern is the best pattern for developing concurrent software.
