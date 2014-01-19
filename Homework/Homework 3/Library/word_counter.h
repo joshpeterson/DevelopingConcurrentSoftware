@@ -17,8 +17,10 @@ public:
     template <typename IteratorType> void map(IteratorType begin, IteratorType end)
     {
         for (auto i = begin; i != end; ++i)
-        if (case_insensitive_equals(word_to_find_,*i))
-                ++count_;
+        {
+            if (case_insensitive_equals(word_to_find_,*i))
+                    ++count_;
+        }
     }
 
     void reduce(const word_counter& other)
