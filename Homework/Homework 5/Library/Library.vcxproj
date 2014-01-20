@@ -19,7 +19,6 @@
     <ClInclude Include="mpi_parallel_task_scatter_gather.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gettysburg_address.cpp" />
     <ClCompile Include="mpi_word_counter.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

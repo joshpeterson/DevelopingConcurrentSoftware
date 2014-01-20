@@ -1,20 +1,15 @@
 #include "mpi_word_counter.h"
 
-extern std::vector<std::string> gettysburg_address;
-
-mpi_word_counter::mpi_word_counter(const std::string& word_to_find) : word_to_find_(word_to_find), count_(0)
-{
-}
-
-mpi_word_counter::mpi_word_counter(const mpi_word_counter& other) : word_to_find_(other.word_to_find_), count_(other.count_)
+mpi_word_counter::mpi_word_counter(const std::string& word_to_find, const std::vector<std::string>& strings_to_search) :
+    word_to_find_(word_to_find), strings_to_search_(strings_to_search), count_(0)
 {
 }
 
 void mpi_word_counter::map(unsigned int begin, unsigned int end)
 {
-    for (auto i = begin; i != end; ++i)
+    for (auto i = begin; i <= end; ++i)
     {
-        if (case_insensitive_equals(word_to_find_, gettysburg_address[i]))
+        if (case_insensitive_equals(word_to_find_, strings_to_search_[i]))
             ++count_;
     }
 }
