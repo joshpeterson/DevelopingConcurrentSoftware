@@ -3,6 +3,6 @@
 
 TEST(MpiWordCounterTests, GetCountReturnsZeroByDefault)
 {
-    mpi_word_counter counter("unused");
+    mpi_word_counter counter("unused", std::vector<std::string>());
     ASSERT_EQ(0, counter.get_count());
 }

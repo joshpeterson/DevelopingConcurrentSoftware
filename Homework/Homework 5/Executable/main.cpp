@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
 void verify_word_count(const std::string& word, int expected_count, int number_of_processes)
 {
-    mpi_word_counter task(word);
+    mpi_word_counter task(word, gettysburg_address);
     MpiAdapter mpi;
     auto runner = MpiParallelTask<mpi_word_counter>(task, mpi, 0, gettysburg_address.size()-1, even_partitioning_of_consecutive_integers, number_of_processes);
 

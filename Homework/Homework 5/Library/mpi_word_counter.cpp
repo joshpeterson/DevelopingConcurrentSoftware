@@ -1,13 +1,8 @@
 #include "mpi_word_counter.h"
 
-mpi_word_counter::mpi_word_counter(const std::string& word_to_find)
+mpi_word_counter::mpi_word_counter(const std::string& word_to_find, const std::vector<std::string>& strings_to_search)
 {
 }
-
-mpi_word_counter::mpi_word_counter(const mpi_word_counter& other)
-{
-}
-
 
 void mpi_word_counter::map(unsigned int begin, unsigned int end)
 {
