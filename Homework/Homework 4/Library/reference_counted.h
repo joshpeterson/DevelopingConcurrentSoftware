@@ -8,7 +8,7 @@ template <typename T>
 class reference_counted
 {
 public:
-    reference_counted(T initial_value) : count_(0)
+    reference_counted(const T& initial_value) : count_(0)
     {
         value_ = new T;
         *value_ = initial_value;
@@ -19,7 +19,7 @@ public:
         ++count_;
     }
 
-    void release(int call_identifier)
+    void release()
     {
         --count_;           // 1
         if (count_ == 0)    // 2
