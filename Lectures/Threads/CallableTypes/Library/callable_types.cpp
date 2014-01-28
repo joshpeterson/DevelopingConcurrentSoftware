@@ -3,7 +3,6 @@
 
 namespace callable_types
 {
-
     void free_function()
     {
         std::cout << "Free function\n";

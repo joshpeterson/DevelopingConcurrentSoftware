@@ -19,7 +19,7 @@ public:
         ++count_;
     }
 
-    void release(int call_identifier)
+    void release()
     {
         --count_;           // 1
         if (count_ == 0)    // 2

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
+#include "pi_calculator.h"
 
 std::mutex mutex1;
 std::mutex mutex2;
@@ -10,7 +11,8 @@ void thread1()
     std::lock_guard<std::mutex> lock1(mutex1);
 
     // Simulate some non-trivial execution.
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    calculate_pi pi_calculator;
+    pi_calculator(10000);
     
     std::lock_guard<std::mutex> lock2(mutex2);
 
