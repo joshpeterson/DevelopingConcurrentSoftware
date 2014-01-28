@@ -1,6 +1,5 @@
 namespace callable_types
 {
-
     void free_function();
 
     class functor
