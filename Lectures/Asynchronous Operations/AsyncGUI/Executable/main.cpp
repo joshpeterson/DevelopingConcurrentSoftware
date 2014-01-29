@@ -28,8 +28,9 @@ void HandleButtonClick()
 
     std::condition_variable exit_condition;
     calculate_pi pi_calculator(&exit_condition, &window_closed);
+    auto pi = pi_calculator(number_of_iterations);
 
-    auto pi = std::async(pi_calculator, number_of_iterations);
+    /*auto pi = std::async(pi_calculator, number_of_iterations);
 
     while (pi.wait_for(std::chrono::milliseconds(100)) != std::future_status::ready)
     {
@@ -41,13 +42,13 @@ void HandleButtonClick()
             pi.wait();
             break;
         }
-    }
+    }*/
 
     if (!window_closed)
     {
         std::stringstream message;
         message.precision(15);
-        message << "The value of pi is: " << pi.get();
+        message << "The value of pi is: " << pi;
 
         MessageBox(hwndMain, message.str().c_str(), "pi", 0);
     }

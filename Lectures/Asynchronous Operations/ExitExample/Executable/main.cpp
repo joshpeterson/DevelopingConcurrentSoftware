@@ -3,6 +3,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <chrono>
+#include "pi_calculator.h"
 
 std::mutex m;
 std::condition_variable exit_condition;
@@ -28,7 +29,8 @@ int main()
     std::thread t(func);
 
     // Simulate doing something
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    calculate_pi pi_calculator;
+    pi_calculator(100000);
 
     should_exit  = true;
     exit_condition.notify_one();

@@ -1,13 +1,12 @@
 Homework 4
 ==========
-Write unit tests to verify the behavior of the thread-safe cache we discussed in class.
+Write unit tests to verify the behavior of the `reference_counted` class we discussed in class.
 
 Due: Prior to class on February 17
 
 Starting with the initial source code in Homework4.sln:
 
-1. Provide unit tests to verify all of the behavior of the cache class.
-2. Provide unit tests to verify all of the behavior of the locking_cache_strategy_helper class.
+1. Provide unit tests to verify all of the behaviors of the `reference_counted` class.
 
 You will be graded on:
 

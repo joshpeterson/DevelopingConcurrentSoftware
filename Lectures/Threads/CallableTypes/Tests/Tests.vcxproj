@@ -45,12 +45,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>../Library;$(GTEST_DIR)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Library;$(C:\Users\DrehmanTJ1\Desktop\gtest-1.6.0-modified)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_VARIADIC_MAX=10;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(GTEST_DIR)\msvc\gtest\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$C:\Users\DrehmanTJ1\Desktop\gtest-1.6.0-modified\msvc\gtest\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>Library.lib;gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
