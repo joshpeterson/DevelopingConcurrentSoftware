@@ -11,30 +11,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cache_strategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="locking_cache_strategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="null_cache_strategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="thread_neutral_cache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="thread_safe_cache.h">
+    <ClInclude Include="reference_counted.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="locking_cache_strategy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="null_cache_strategy.cpp">
+    <ClCompile Include="dummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

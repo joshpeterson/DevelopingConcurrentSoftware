@@ -54,7 +54,7 @@ Google Test is a C++ unit testing framework. In order to use it with Visual Stud
 2. Extract the .zip file to some location on your machine
 3. Set the GTEST_DIR environment variable to point to the location of the extracted file. For example, if you extracted the files to C:\Development, then
 
-<pre>GEST_DIR=C:\Development\gtest-1.6.0-modified</pre>
+<pre>GTEST_DIR=C:\Development\gtest-1.6.0-modified</pre>
 
 Verification
 ------------

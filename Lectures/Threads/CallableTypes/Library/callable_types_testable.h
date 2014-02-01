@@ -2,7 +2,6 @@
 
 namespace callable_types_testable
 {
-
     void free_function(std::ostream& out);
 
     class functor

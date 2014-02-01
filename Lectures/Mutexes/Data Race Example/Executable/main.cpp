@@ -7,17 +7,22 @@ int shared;
 
 void reader()
 {
-	m.lock();
+	std::lock_guard<std::mutex>lock(m);
+//	m.lock();
     std::cout << "The value of shared is: " << shared << std::endl;
-	m.unlock();
+//	m.unlock();
 }
 
 void writer()
 {
-	m.lock();
-    for (int i = 0; i < 1000000; ++i)
-        shared++;
-	m.unlock();
+	std::lock_guard<std::mutex>lock(m);
+//	m.lock();
+	for (int i = 0; i < 1000000; ++i)
+	{
+//		std::lock_guard<std::mutex>lock(m);			// bad idea "benign" race condition
+		shared++;
+	}
+//	m.unlock();
 }
 
 int main()
