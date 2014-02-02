@@ -7,17 +7,24 @@ class thread_safe_vector
 public:
     void push_back(T value)
     {
+		position[Counter] = value;
+		Counter++;
+		return;
     }
 
     T at(int index) const
     {
-        return T();
+		return position[index];
     }
 
     int size() const
     {
-        return 0;
+        return Counter;
     }
+	
+private:
+	T position[1000];
+	int Counter = 0;
 };
 
 #endif //__THREAD_SAFE_VECTOR_H
