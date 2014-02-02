@@ -23,6 +23,6 @@ int main()
     std::cout << "sum2: " << sum2 << std::endl;
     std::cout << "The sum is: " << sum1 + sum2 << std::endl;
 
-    std::cout << "Press any key to continue...\n";
-    std::getchar();
+	std::cout << "Press any key to continue...\n";
+	std::getchar();
 }
