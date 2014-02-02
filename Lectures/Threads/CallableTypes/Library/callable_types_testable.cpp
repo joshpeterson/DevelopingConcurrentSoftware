@@ -3,7 +3,6 @@
 
 namespace callable_types_testable
 {
-
     void free_function(std::ostream& out)
     {
         std::cout << "Free function\n";

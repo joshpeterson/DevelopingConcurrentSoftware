@@ -13,7 +13,6 @@ void reader_thread()
     {
         std::cout << "Reader loop " << i << std::endl;
         ++i;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 
     std::cout << "Data value: " << data[0] << std::endl; // 2
