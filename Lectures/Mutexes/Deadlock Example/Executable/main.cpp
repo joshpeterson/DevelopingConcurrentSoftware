@@ -5,7 +5,7 @@
 std::mutex mutex1;
 std::mutex mutex2;
 
-void thread1()
+void thread1()//LOCKS MUTEX 1	
 {
     std::lock_guard<std::mutex> lock1(mutex1);
 

@@ -2,6 +2,10 @@ Homework 2
 ==========
 This homework assignment requires you to write a vector with a limited interface that is safe to call from multiple threads.
 
+//wrap a standard vector
+//provide own methods
+//look at producer/consumer test
+
 Due: Prior to class on February 3
 
 Starting with the initial source code in Homework2.sln:
