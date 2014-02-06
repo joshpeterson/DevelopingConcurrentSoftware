@@ -29,13 +29,10 @@ public:
     TValue get(TKey key, std::function<TValue> value_constructor)
 #endif
     {
-        std::map<TKey, TValue>::iterator value_in_cache;
         TValue result;
 
-        {
-            auto helper = strategy_->during_cache_access();
-            value_in_cache = cache_.find(key);
-        }
+        auto helper = strategy_->during_cache_access();
+        auto value_in_cache = cache_.find(key);
 
         if (value_in_cache == cache_.end())
         {
@@ -52,7 +49,7 @@ public:
 
     void clear()
     {
-        strategy_->during_cache_access();
+        auto helper = strategy_->during_cache_access();
         cache_.clear();
     }
 
