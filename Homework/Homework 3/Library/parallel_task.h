@@ -1,5 +1,5 @@
-#ifndef __PARALELL_TASK_H
-#define __PARALELL_TASK_H
+#ifndef __PARALLEL_TASK_H
+#define __PARALLEL_TASK_H
 
 #include <vector>
 #include <utility>
@@ -83,4 +83,4 @@ parallel_task<IteratorType, TaskType, TaskConstructorArgumentType> make_parallel
     return parallel_task<IteratorType, TaskType, TaskConstructorArgumentType>(begin, end, task, argument, number_of_threads);
 }
 
-#endif // __PARALELL_TASK_H
+#endif // __PARALLEL_TASK_H
