@@ -47,7 +47,7 @@ void verify_word_count(const std::string& word, int expected_count)
 {
     word_counter counter;
 
-    auto task = make_parallel_task(gettysburg_address.begin(), gettysburg_address.end(), counter, word, 4);
+    auto task = make_parallel_task(gettysburg_address.begin(), gettysburg_address.end(), counter, word, 1);
     task.start();
     task.complete();
 
