@@ -12,9 +12,10 @@ int gauss(int start, int end)
 
 int main()
 {
-    std::future<int> sum = std::async(gauss, 1, 10000);
+    std::future<int> sum = std::async(gauss, 1, 10000); // execute, threaded or no, just don't mess with my stuff
+	//return future
 
-    std::cout << "Sum: " << sum.get() << std::endl;
+    std::cout << "Sum: " << sum.get() << std::endl; //cpp will call join [for get] (and wait) or executed inline - up to OS
 
     std::cout << "Press any key to continue...\n";
     std::getchar();

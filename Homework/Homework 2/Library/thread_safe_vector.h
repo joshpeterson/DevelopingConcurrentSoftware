@@ -32,7 +32,7 @@ int thread_safe_vector<T>::size() const
 template <class T>
 T thread_safe_vector<T>::at(int index) const
 {
-	//std::lock_guard<std::mutex> lock(m);
+	std::lock_guard<std::mutex> lock(m);
 	return Type.at(index);
 }
 
