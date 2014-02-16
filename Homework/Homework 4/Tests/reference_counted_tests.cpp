@@ -1,6 +1,14 @@
 #include "gtest/gtest.h"
 #include "reference_counted.h"
 
+// Question
+// Is it ok to add the accessor functions that I have added to the library in order to test?
+// I found something in the GTest library that allows a Friend test, but I didn't look too much
+// into it.
+
+// I added an accessor that returns the current number of references,
+// one that returns the current value of the value pointer,
+// and one that returns the current value at the value pointer.
 
 TEST(Ref_count_tests, default_return_0){
 	reference_counted<int> tester(42);
