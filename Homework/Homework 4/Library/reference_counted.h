@@ -25,6 +25,14 @@ public:
         if (count_ == 0)    // 2
             delete value_;
     }
+	int get_count()
+	{
+		return count_;
+	}
+	T get_value()
+	{
+		return *value_;
+	}
 
 private:
     T* value_;
