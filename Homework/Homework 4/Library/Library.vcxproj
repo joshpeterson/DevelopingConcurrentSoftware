@@ -11,16 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cache.h" />
-    <ClInclude Include="cache_strategy.h" />
-    <ClInclude Include="locking_cache_strategy.h" />
-    <ClInclude Include="null_cache_strategy.h" />
-    <ClInclude Include="thread_neutral_cache.h" />
-    <ClInclude Include="thread_safe_cache.h" />
+    <ClInclude Include="reference_counted.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="locking_cache_strategy.cpp" />
-    <ClCompile Include="null_cache_strategy.cpp" />
+    <ClCompile Include="dummy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7D660805-344B-4441-914A-0EC66C7D64C5}</ProjectGuid>
