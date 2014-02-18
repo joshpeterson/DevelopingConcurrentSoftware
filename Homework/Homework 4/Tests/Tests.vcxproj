@@ -74,7 +74,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cache_tests.cpp" />
+    <ClCompile Include="locking_strategy_tests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mock_mutex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mock_mutex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
