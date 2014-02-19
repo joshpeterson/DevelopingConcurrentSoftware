@@ -50,5 +50,3 @@ TEST(ReferenceCountedTests, NetRemoveAllValues)
 	counter.release();
 	ASSERT_EQ(42, counter.get_value());		// Expect failure because reference becomes invalid 
 }
-
-//hi
