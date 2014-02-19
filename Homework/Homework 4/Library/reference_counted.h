@@ -14,6 +14,18 @@ public:
         *value_ = initial_value;
     }
 
+	//for testing purposes only 
+	int _get_count()
+	{
+		return count_;
+	}
+
+	//for testing purposes only
+	T _get_value()
+	{
+		return *value_;
+	}
+
     void add_reference()
     {
         ++count_;
