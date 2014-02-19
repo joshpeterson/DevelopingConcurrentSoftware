@@ -4,7 +4,7 @@
 #include <vector>
 
 std::vector<int> data;
-bool data_ready = false;
+std::atomic<bool> data_ready = false;
 
 void reader_thread()
 {

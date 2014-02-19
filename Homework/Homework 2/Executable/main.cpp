@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+#include <mutex>
 #include "thread_safe_vector.h"
+using std::mutex;
 
 const std::vector<double> source_data = { 3.14, 55.20, 9, -0.3381, 27.99087, 18, 72.4, 42, 16, -300.25 };
 
-void copy_data_from_source(int source_begin_index, int source_end_index, thread_safe_vector<double>& output_data)
+void copy_data_from_source(int source_begin_index, int source_end_index, thread_safe_vector<double, mutex>& output_data)
 {
     for (auto i = source_begin_index; i <= source_end_index; ++i)
         output_data.push_back(source_data[i]);
@@ -13,7 +15,7 @@ void copy_data_from_source(int source_begin_index, int source_end_index, thread_
 
 int main()
 {
-    thread_safe_vector<double> data;
+    thread_safe_vector<double, mutex> data;
 
     std::thread data_processor1(copy_data_from_source, 0, 4, std::ref(data));
     std::thread data_processor2(copy_data_from_source, 5, 9, std::ref(data));
