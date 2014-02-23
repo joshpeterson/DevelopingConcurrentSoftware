@@ -13,6 +13,10 @@ public:
     unsigned int reduce(unsigned int input);
 
     int get_count() const;
+private:
+	int count;
+	const std::vector<std::string>* strings_copy;
+	std::string word_copy;
 };
 
 #endif // __MPI_WORD_COUNTER_H
