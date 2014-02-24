@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+<<<<<<< HEAD
 #include "reference_counted.h"
 
 TEST(ReferenceCountedTests, DefaultIsZero)
@@ -50,3 +51,6 @@ TEST(ReferenceCountedTests, NetRemoveAllValues)
 	counter.release();
 	ASSERT_EQ(42, counter.get_value());		// Expect failure because reference becomes invalid 
 }
+=======
+#include "reference_counted.h"
+>>>>>>> upstream/master

@@ -25,6 +25,7 @@ public:
         if (count_ == 0)    // 2
             delete value_;
     }
+<<<<<<< HEAD
 	int get_count()
 	{
 		return count_;
@@ -33,6 +34,8 @@ public:
 	{
 		return *value_;
 	}
+=======
+>>>>>>> upstream/master
 
 private:
     T* value_;
