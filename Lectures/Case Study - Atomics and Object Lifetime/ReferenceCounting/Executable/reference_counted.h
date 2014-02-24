@@ -28,7 +28,7 @@ public:
 
 private:
     T* value_;
-    std::atomic<int> count_;
+    std::atomic<int> count_; //how we know how many are using
 };
 
 #endif // __REFERENCE_COUNTED_H
