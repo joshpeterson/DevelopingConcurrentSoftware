@@ -13,6 +13,13 @@ public:
     unsigned int reduce(unsigned int input);
 
     int get_count() const;
+
+	bool equalsSearchTerm(unsigned int index);
+
+private:
+	std::vector<std::string> search_body;
+	std::string word;
+	int count;
 };
 
 #endif // __MPI_WORD_COUNTER_H

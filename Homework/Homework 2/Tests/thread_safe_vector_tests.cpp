@@ -9,6 +9,17 @@ TEST(ThreadSafeVectorTests, InitialSizeIsZero)
     ASSERT_EQ(0, container.size());
 }
 
+<<<<<<< HEAD
+
+TEST(ThreadSafeVectorTests, LockingWorks)
+{
+	thread_safe_vector<int> container;
+	container.push_back(2);
+	ASSERT_EQ(1, container.size());
+}
+
+
+=======
 TEST(ThreadSafeVectorTests, SizeIsOneAfterOnePushBackCall)
 {
     thread_safe_vector<int> container;
@@ -95,3 +106,4 @@ TEST_F(ThreadSafeVectorLockingTests, SizeMethodReleasesTheLock)
 
     ASSERT_TRUE(m_.unlock_called()) << "The size method did not take the lock, which is not expected.";
 }
+>>>>>>> 062c77192f80d862961d77ca50bbebf97c987e57
