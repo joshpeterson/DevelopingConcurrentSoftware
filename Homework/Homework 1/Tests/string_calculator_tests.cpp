@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "gtest/gtest.h"
 #include "../Library/string_calculator.h"
 
@@ -6,6 +7,7 @@ TEST(StringCalculatorTests, SumOfZeroAndZeroIsZero)
     ASSERT_EQ(0, add("0", "0"));
 }
 
+<<<<<<< HEAD
 TEST(StringCalculatorTests, SumOfOneAndOneIsTwo)
 {
 	ASSERT_EQ(2, add("1", "1"));
@@ -82,4 +84,44 @@ TEST(StringCalculatorTests, DividingTwentyoneByElevenIsOne)
 {
 	//dividing two digit numbers with two digit remainder
 	ASSERT_EQ(1, divide("21", "11"));
+=======
+TEST(StringCalculatorTests, SumOfOneAndZeroIsOne)
+{
+    ASSERT_EQ(1, add("1", "0"));
+}
+
+TEST(StringCalculatorTests, SumOfZeroAndOneIsOne)
+{
+    ASSERT_EQ(1, add("0", "1"));
+}
+
+TEST(StringCalculatorTests, SumOfZeroAndNegativeOneIsNegativeOne)
+{
+    ASSERT_EQ(-1, add("0", "-1"));
+}
+
+TEST(StringCalculatorTests, DifferenceOfThreeAndTwoIsOne)
+{
+    ASSERT_EQ(1, subtract("3", "2"));
+}
+
+TEST(StringCalculatorTests, DifferenceOfTwoAndThreeIsNegativeOne)
+{
+    ASSERT_EQ(-1, subtract("2", "3"));
+}
+
+TEST(StringCalculatorTests, ProductOfTwoAndThreeIsSix)
+{
+    ASSERT_EQ(6, multiply("2", "3"));
+}
+
+TEST(StringCalculatorTests, QuotientOfSixAndThreeIsTwo)
+{
+    ASSERT_EQ(2, divide("6", "3"));
+}
+
+TEST(StringCalculatorTests, DivideThrowsInvalidArgumentExceptionWhenRightIsZero)
+{
+    ASSERT_THROW(divide("6", "0"), std::invalid_argument);
+>>>>>>> 062c77192f80d862961d77ca50bbebf97c987e57
 }
