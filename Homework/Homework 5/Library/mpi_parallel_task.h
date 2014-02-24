@@ -63,7 +63,6 @@ public:
                 MPI_Status status;
                 unsigned int output;
                 mpi_interface_.MpiRecv(&output, 1, MPI_UINT32_T, slave_process_rank, 0, MPI_COMM_WORLD, &status);
-
                 task_.reduce(output);
             }
         }
