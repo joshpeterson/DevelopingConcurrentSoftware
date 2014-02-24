@@ -13,6 +13,10 @@ public:
     unsigned int reduce(unsigned int input);
 
     int get_count() const;
+private:
+	int counter;
+	std::string word, word_upper;
+	std::vector<std::string> word_search;
 };
 
 #endif // __MPI_WORD_COUNTER_H
